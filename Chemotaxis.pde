@@ -2,7 +2,7 @@
 
 Bacteria sirmixalot;
 Bacteria[] backupsingers;
-int x, y, size, count;
+int x, y, magnitude, count;
 evilBeing jess;
 
 void setup() {
@@ -11,8 +11,8 @@ void setup() {
   for (int i=0; i<backupsingers.length; i++) {           //Gives starting place to new bacteria
     x=(int)(Math.random()*600);
     y=(int)(Math.random()*100)+50;
-    size=15;
-    backupsingers[i] = new Bacteria(x, y, size);
+    magnitude=15;
+    backupsingers[i] = new Bacteria(x, y, magnitude);
   }
   jess = new evilBeing();
   frameRate(10);                                          //Slows those babies down!
@@ -47,16 +47,16 @@ void mousePressed() {                                      //Resets location of 
 class Bacteria {
   int x;
   int y;
-  int size;
-  Bacteria(int _x, int _y, int _size) {
+  int magnitude;
+  Bacteria(int _x, int _y, int _magnitude) {
     x = _x;
     y = _y;
-    size=_size;
+    magnitude=_magnitude;
   }
 
   void show() {                                            //Shows living bacteria as circles
     fill(200, 0, 200);
-    ellipse(x, y, size, size);
+    ellipse(x, y, magnitude, magnitude);
   }
 
   void jump() {                                             //Resets location of bacteria
@@ -70,11 +70,11 @@ class Bacteria {
   }
 
   void perish() {                                            //Bacteria EXPLODE! #RIP
-    for (int decay=0; decay<size; decay++) {
-      size=size-1;
+    for (int decay=0; decay<magnitude; decay++) {
+      magnitude=magnitude-1;
       show();
       fill(100, 0, 255);
-      ellipse(x, y, size, size*2);
+      ellipse(x, y, magnitude, magnitude*2);
     }
   }
 }
